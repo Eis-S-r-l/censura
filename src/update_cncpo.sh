@@ -2,7 +2,6 @@
 
 . $(dirname "${0}")/censorship_params.sh
 
-LIST_URL='https://203.0.113.113/' #Replace with the correct IP address
 LIST_FILE="${TMP_DL_DIR}/blacklist_cncpo.csv"
 LIST_OUT="${UNBOUND_CONF_DIR}/db.blacklist_cncpo.conf"
 LIST_TYPE="cncpo"
@@ -25,7 +24,7 @@ if [ ! -t 0 ]; then
 fi
 
 ## downloading ###############################################################
-${WGET_BIN} ${WGET_OPTS} ${LIST_URL} -O ${LIST_FILE}
+${WGET_BIN} ${WGET_OPTS} ${CNCPO_LIST_URL} -O ${LIST_FILE}
 
 ## parsing ###################################################################
 ${PARSER_BIN} ${PARSER_OPTS}
