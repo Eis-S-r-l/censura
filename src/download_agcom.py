@@ -29,7 +29,6 @@ def main():
     curPage = 1
     while((allegatoB is None) and (curPage <= 10)):
         url = "https://www.agcom.it/provvedimenti-a-tutela-del-diritto-d-autore?p_p_id=listapersconform_WAR_agcomlistsportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_listapersconform_WAR_agcomlistsportlet_numpagris=10&_listapersconform_WAR_agcomlistsportlet_curpagris={}".format(curPage)
-        print(curPage)
         page = requests.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
         for div in soup.findAll('div', attrs={'class':'risultato'}):
