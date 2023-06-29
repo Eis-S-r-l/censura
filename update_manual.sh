@@ -1,7 +1,5 @@
 #!/bin/sh -e
 
-. $(dirname "${0}")/censorship_params.sh
-
 LIST_OUT="${UNBOUND_CONF_DIR}/db.blacklist_manual.conf"
 LIST_TYPE="manuale"
 
