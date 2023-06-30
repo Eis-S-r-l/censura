@@ -17,7 +17,7 @@ Here is a bundle of scripts able to get the lists, parse the data and produce a
 DNS file (currently for Bind, Unbound, and PowerDNS) to hijack some queries toward a customized stop
 page.
 
-> :warning: **CNCPO requires a procedure to register and get a client certificate**: They provide a .pfx certificate (PKCS#12) with a password. If you need to convert to PEM try the following commands (thanks to Daniele Carlini for the feedback):
+> :warning: **CNCPO requires the ISP to register**: Once the registration has completed they provide a .pfx certificate (PKCS#12) with a password. This will be later used as a client certificate to pull the list from their web server. If you need to convert to PEM try the following commands (thanks to Daniele Carlini for the feedback):
 ```bash
 openssl enc -base64 -d -in cncpo.pfx -out cncpo-base64.pfx
 openssl pkcs12 -in cncpo-base64.pfx -out cncpo.pem  -clcerts -nodes
@@ -44,6 +44,8 @@ pip install -r requirements.txt
 ### Configuration
 
 All of the configurable parameters are in the [parameters.sh](parameters.sh) file for comfort.
+
+If you intend to use e-mail alerts you need to also have msmtp properly configured and working.
 
 ### Disclaimer
 
