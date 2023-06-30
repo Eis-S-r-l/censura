@@ -18,5 +18,16 @@ fi
 ## downloading ###############################################################
 ${WGET_BIN} ${WGET_OPTS} ${LIST_URL} -O ${LIST_FILE}
 
+if [ $? -ne 0 ];then
+  echo "Couldn't download latest AAMS list"
+  ErrorMailAams="<tr><td><center>AAMS</center></td><td><center>failed</center></td><td><center>N/A</center></td></tr>"
+  ErrorMailSend=true
+else
 ## parsing ###################################################################
-${PARSER_BIN} ${PARSER_OPTS}
+  ${PARSER_BIN} ${PARSER_OPTS}
+  if [ $? -ne 0 ];then
+    echo "Couldn't parse latest AAMS list"
+    ErrorMailAams="<tr><td><center>AAMS</center></td><td><center>success</center></td><td><center>failed</center></td></tr>"
+    ErrorMailSend=true
+  fi
+fi

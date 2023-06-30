@@ -7,12 +7,17 @@ PARSER_OPTS="-i ${LIST_FILE} -o ${LIST_OUT} -f ${OUTPUT_FORMAT} -d ${LIST_TYPE} 
 
 ## downloading ###############################################################
 python3 $(dirname "${0}")/download_agcom.py -o ${LIST_FILE}
-returnCode=$?
 
-if [ $returnCode -ne 0 ];then
+if [ $? -ne 0 ];then
     echo "Couldn't download latest AGCOM list"
-    exit 1
+    ErrorMailAgcom="<tr><td><center>AGCOM</center></td><td><center>failed</center></td><td><center>N/A</center></td></tr>"
+    ErrorMailSend=true
 else
 ## parsing ###################################################################
-   ${PARSER_BIN} ${PARSER_OPTS}
+    ${PARSER_BIN} ${PARSER_OPTS}
+    if [ $? -ne 0 ];then
+        echo "Couldn't parse latest AGCOM list"
+        ErrorMailAgcom="<tr><td><center>AGCOM</center></td><td><center>success</center></td><td><center>failed/td></tr>"
+        ErrorMailSend=true
+    fi
 fi

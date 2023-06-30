@@ -17,6 +17,11 @@ BLACKHOLE_AAMS="217.175.53.72" #Replace, if changed, with the chosen IP address 
 BLACKHOLE_ADMT="217.175.53.228" #Replace, if changed, with the chosen IP address for the ADMT list
 BLACKHOLE_MANUAL="127.0.0.1" #Replace with the chosen IP address for the Manual list
 
+MSMTP_BIN=$(which msmtp)
+MAIL_ALERTS_ENABLED=false #turn e-mail notifications on failures on or off
+MAIL_MSMTP_ACCOUNT="gmail" #specify msmtp account name to be used
+MAIL_ALERTS_TO="example@email.com"
+
 OUTPUT_FORMAT="unbound"  # Replace to "bind" or to "unbound"
 
 # Unbound configuration folder
