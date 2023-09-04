@@ -6,6 +6,6 @@ idna==2.10
 imaplib2==3.6
 requests==2.25.1
 six==1.16.0
-soupsieve==2.4.1
+soupsieve==2.5
 urllib3==1.26.16
 validators==0.18.2
