@@ -7,10 +7,10 @@ def main():
     global options
     # Definisco le due variabili sotto e le inizializzo nulle
     # Questo perchè se in tutta la pagina non trovo un provvedimento
-    # allora lastDelibera e allegatoB restano non inizializzate e mandano
+    # allora lastDetermina e allegatoB restano non inizializzate e mandano
     # in errore lo script
 
-    lastDelibera = None
+    lastDetermina = None
     allegatoB = None
 
 
@@ -35,14 +35,14 @@ def main():
             for p in div.findAll('p'):
                 if not ("provvedimento" in p.text.lower() or "ordine" in p.text.lower()):continue
                 tag = div.find('a')
-                if "delibera" in tag.text.lower():
-                    lastDelibera = "https://www.agcom.it"+tag["href"]
+                if "determina" in tag.text.lower():
+                    lastDetermina = "https://www.agcom.it"+tag["href"]
                     break
-            if lastDelibera is not None:break
+            if lastDetermina is not None:break
         
 
-        if lastDelibera is not None:
-            page = requests.get(lastDelibera)
+        if lastDetermina is not None:
+            page = requests.get(lastDetermina)
             soup = BeautifulSoup(page.content, "html.parser")
             for allegato in soup.find_all("a"):
                 if not "allegato b" in allegato.text.lower():continue
